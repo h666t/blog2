@@ -43,7 +43,7 @@ export default function FirstBlog (){
     <>
       <button onClick={addN}>n+1</button>
       <button onClick={addM}>m+1</button>
-      <Screen ref={ref} add={addN}></Screen>
+      <Screen ref={ref} ></Screen>
       <button onClick={showRef}>ref</button>
       {/*<Screen ></Screen>*/}
       <Link href="/"><a>返回首页</a></Link>

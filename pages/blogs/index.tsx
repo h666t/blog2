@@ -1,6 +1,7 @@
 import {GetStaticProps, NextPage} from 'next';
 import {useBlogs} from '../../hooks/useBlogs';
-import getPosts from '../../lib/blogs';
+import {getBlogList} from '../../lib/blogs';
+import Link from 'next/link';
 
 type Props = {
   blogsList: Blog[];
@@ -12,10 +13,7 @@ const BlogIndex: NextPage<Props> = (props) => {
   const {blogsList} = props;
   return <>
     {blogsList.map((blog) => <div key={blog.id}>
-      <div>id: {blog.id}</div>
-      <div>content: {blog.content}</div>
-      <div>date: {blog.date}</div>
-      <div>title: {blog.title}</div>
+      <Link href={`/blogs/${blog.id}`}><a>{blog.id}</a></Link>
     </div>)}
   </>;
 };
@@ -23,7 +21,7 @@ const BlogIndex: NextPage<Props> = (props) => {
 export default BlogIndex;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const blogsList = JSON.parse(JSON.stringify(await getPosts()));
+  const blogsList = JSON.parse(JSON.stringify(await getBlogList()));
   return {
     props: {
       blogsList

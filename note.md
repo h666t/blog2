@@ -49,7 +49,7 @@ export default function Demo(){
    通过GetStaticProps将将服务端数据挂载到prop上。此时页面已经被完全静态化了，build的时候就完成静态化了，
    
 
-````jsx
+````tsx
 import {GetStaticProps, NextPage} from 'next';
 import {useBlogs} from '../../hooks/useBlogs';
 import getPosts from '../../lib/blogs';
@@ -88,6 +88,38 @@ export const getStaticProps: GetStaticProps = async  () => {
 3. 服务端渲染（SSR）
    1. 用于解决白屏、seo问题、不同用户请求结果不一样,php py ruby java 的基本功能
    2. Next中的静态内容 后端会渲染一次，前端在渲染一次，前端渲染的时候会把事件监听等内容绑定上去
-   3. js的动态内容是由客户端渲染的
+   3. js的动态内容是由客户端渲染的,由于getServerSideProps只能获取到请求和响应，所以无法获得类似窗口大小等信息
+````tsx
+import {GetServerSideProps, NextPage} from 'next';
+import {UAParser} from 'ua-parser-js';
+
+type Props = {
+  userAgent: UAParser.IBrowser
+}
+
+const DemoIndex:NextPage<Props> = (props) => {
+  console.log(props);
+  return <>
+    你的浏览器是{props.userAgent.name}
+  </>
+}
+
+export default DemoIndex
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: {
+      userAgent: new UAParser(context.req.headers['user-agent']).getBrowser()
+    }
+  }
+}
+````
+
+# 路由
+例如
+````tsx
+   <Link href={`/xxx/${xxx.id}}`> <a>click me</a> </Link>
+````
+创建一个 [id].tsx 文件
 
 

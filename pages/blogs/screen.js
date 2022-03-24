@@ -1,6 +1,6 @@
 import React, {forwardRef, memo, useCallback, useEffect, useImperativeHandle, useMemo, useState} from "react"
 
-const Screen = forwardRef((props, ref)=>{
+const Screen = forwardRef( function X (props, ref){
   useImperativeHandle(ref, ()=>{
     return {
       haha: ()=>{
