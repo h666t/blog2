@@ -1,11 +1,11 @@
 import {NextApiHandler, NextApiRequest, NextApiResponse} from 'next';
 import fs, {promises as fsPromise} from 'fs'
 import path from 'path';
-import getPosts from '../../../lib/posts';
+import getPosts from '../../../lib/blogs';
 
 
 
-const Posts: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const Blogs: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   res.statusCode = 200;
   res.setHeader('Content-type', 'application/json');
   let blogList = await getPosts()
@@ -13,4 +13,4 @@ const Posts: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) 
   res.end();
 };
 
-export default Posts;
+export default Blogs;

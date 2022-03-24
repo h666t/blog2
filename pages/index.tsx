@@ -18,7 +18,7 @@ export default function Home() {
         </h1>
 
         <p>
-          <Link href="/posts/first-blog"><a>第一篇博客</a></Link>
+          <Link href="/blogs/first-blog"><a>第一篇博客</a></Link>
         </p>
 
         <p className={styles.description}>

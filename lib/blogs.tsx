@@ -9,7 +9,7 @@ const getPosts = async () => {
     let blogPath = path.join(markdownDir, item);
     let fileContent = fs.readFileSync(blogPath, 'utf-8');
     let {content, data: {title, date}} = matter(fileContent)
-    return {content, title, date}
+    return {id: title, content, title, date}
   })
 };
 
