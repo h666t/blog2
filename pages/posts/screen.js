@@ -1,17 +1,28 @@
-import React, {memo, useCallback, useEffect, useMemo, useState} from "react"
+import React, {forwardRef, memo, useCallback, useEffect, useImperativeHandle, useMemo, useState} from "react"
 
-function  _screen (props){
-
+const Screen = forwardRef((props, ref)=>{
+  useImperativeHandle(ref, ()=>{
+    return {
+      haha: ()=>{
+        console.log('haha')
+      }
+    }
+  })
   // let [x, setX] = useState(0)
   console.log('update')
   // console.log(props.add)
   return <>
+    <div>test</div>
     children
     {/*{props.n}*/}
+    <style jsx>{`
+      div{
+        color: red;
+      }
+    `}</style>
   </>
-}
+})
 
-const Screen = memo(_screen)
 
 export default Screen
 

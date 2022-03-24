@@ -1,7 +1,11 @@
 import Link from "next/link"
-import {useCallback, useEffect, useMemo, useState} from "react"
+import {createRef, useCallback, useEffect, useMemo, useRef, useState} from "react"
 import Screen from "./screen"
+import demoPng from "../../assets/images/demo.jpg"
+import Image from "next/image"
+import nn from "../../assets/images/n.svg"
 
+console.log(demoPng)
 // console.log('执行了')
 export default function FirstBlog (){
   // useEffect(()=>{
@@ -31,13 +35,20 @@ export default function FirstBlog (){
     setN((i)=>{return i+1})
   },[setN])
 
+  const ref = useRef()
+  const showRef= ()=>{
+    console.log(ref)
+  }
   return (
     <>
       <button onClick={addN}>n+1</button>
       <button onClick={addM}>m+1</button>
-      <Screen add={addN}></Screen>
+      <Screen ref={ref} add={addN}></Screen>
+      <button onClick={showRef}>ref</button>
       {/*<Screen ></Screen>*/}
       <Link href="/"><a>返回首页</a></Link>
+      {/*<img src={nn.src} />*/}
+      <Image src={nn.src} width="100%" height="100%" alt=""/>
     </>
   )
 }
