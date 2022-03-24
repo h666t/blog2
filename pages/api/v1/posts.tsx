@@ -1,9 +1,15 @@
 import {NextApiHandler, NextApiRequest, NextApiResponse} from 'next';
+import fs, {promises as fsPromise} from 'fs'
+import path from 'path';
+import getPosts from '../../../lib/posts';
 
-const Posts: NextApiHandler = (req: NextApiRequest, res: NextApiResponse) => {
+
+
+const Posts: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   res.statusCode = 200;
   res.setHeader('Content-type', 'application/json');
-  res.write(JSON.stringify({name: 'frank'}));
+  let blogList = await getPosts()
+  res.write(JSON.stringify(blogList))
   res.end();
 };
 
