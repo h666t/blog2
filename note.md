@@ -45,7 +45,9 @@ export default function Demo(){
    <br/>例如 react vue,用js生成html
 2. 静态页面生成（SSG）
    1. 用于解决白屏、seo问题、所有用户请求结果都一样，把php提前渲染成html
-   2. 动内容由服务器渲染好，直接给客户端，省去客户端的渲染 =》 动态内容静态化,通过GetStaticProps将将服务端数据挂载到prop上
+   2. 动内容由服务器渲染好，直接给客户端，省去客户端的渲染 =》 动态内容静态化,
+   通过GetStaticProps将将服务端数据挂载到prop上。此时页面已经被完全静态化了，build的时候就完成静态化了，
+   
 
 ````jsx
 import {GetStaticProps, NextPage} from 'next';
