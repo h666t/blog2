@@ -40,3 +40,10 @@ export default function Demo(){
     yarn add @types/react
     yarn add @types/react-dom
 ````
+# 渲染方式
+1. 客户端渲染
+   例如 react vue
+2. 静态页面生成（SSG）
+   用于解决白屏、seo问题、所有用户请求结果都一样
+3. 服务端渲染（SSR）
+   用于解决白屏、seo问题、不同用户请求结果不一样
