@@ -9,8 +9,8 @@ const BlogDetail: NextPage<Props> = (props) => {
   return <>
     <h1>{props.blogDetail.title}</h1>
     <br/>
-    <article>
-      {props.blogDetail.content}
+    这里会被注入
+    <article dangerouslySetInnerHTML={{__html: props.blogDetail.htmlContent}}>
     </article>
   </>;
 };
