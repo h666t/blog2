@@ -226,3 +226,7 @@ git checkout HEAD -- tsconfig.json
 运行 npx babel ./src --out-dir dist --extensions ".ts,.tsx" 编译ts
 
 * 把同步功能禁用
+
+# 创建表
+通过 migrations ，它可以帮助你进行修改数据库字段等操作，而不用担心数据丢失
+通过 https://typeorm.io/migrations 创建表

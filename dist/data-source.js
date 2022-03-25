@@ -19,7 +19,7 @@ var AppDataSource = new _typeorm.DataSource({
   synchronize: true,
   logging: false,
   entities: [],
-  migrations: [],
+  migrations: ['dist/migration/**/*.js'],
   subscribers: []
 });
 exports.AppDataSource = AppDataSource;
