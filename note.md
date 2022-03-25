@@ -179,3 +179,13 @@ psql -U postgres
 \dt 表示展示所有表（display table）
 create databse blog; 表示创建blog数据库
 ````
+
+# typeorm
+````bash
+根据typeorm文档安装依赖
+
+提交代码，typeorm会覆盖你的gitignore和package.json，初始化完要返回回去
+npx typeorm init --database postgres 初始化typeorm
+git checkout HEAD -- .gitignore
+git checkout HEAD -- package.json
+````
