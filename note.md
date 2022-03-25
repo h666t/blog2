@@ -224,3 +224,5 @@ git checkout HEAD -- tsconfig.json
 }
 ````
 运行 npx babel ./src --out-dir dist --extensions ".ts,.tsx" 编译ts
+
+* 把同步功能禁用
