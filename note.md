@@ -171,7 +171,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 # postgres
 ````bash
 docker pull postgres
-docker run --name mypostgres -d -p 5432:5432 -e POSTGRES_PASSWORD=123456 postgres
+docker run --name mypostgres -e POSTGRES_HOST_AUTH_METHOD=trust -p 5432:5432 -d postgres
 docker exec -it 容器id bash
 psql -U postgres
 \l 表示list
@@ -184,9 +184,43 @@ create databse blog; 表示创建blog数据库
 ````bash
 根据typeorm文档安装依赖
 
-提交代码，typeorm会覆盖你的gitignore和package.json，初始化完要返回回去
+提交代码，typeorm会覆盖你的gitignore和package.json，tsconfig.json 初始化完要返回回去
 npx typeorm init --database postgres 初始化typeorm
 git checkout HEAD -- .gitignore
 git checkout HEAD -- package.json
 git checkout HEAD -- tsconfig.json
+
+修改数据库配置 src/data-source.ts
+
 ````
+
+注意：typeorm使用的是tsnode编译ts，nextjs用的是babel，使用我们需要使用babel 编译 typeorm
+
+> https://dev.to/unframework/getting-typeorm-to-work-with-next-js-and-typescript-1len
+
+安装
+"@babel/cli": "^7.17.6",
+"@babel/core": "^7.0.0-0",
+"@babel/plugin-proposal-decorators": "^7.17.8",
+"babel-plugin-transform-typescript-metadata": "^0.3.2",
+
+自定义 .babelrc 文件
+````json
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "class-properties": {
+          "loose": true
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "babel-plugin-transform-typescript-metadata",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+  ]
+}
+````
+运行 npx babel ./src --out-dir dist --extensions ".ts,.tsx" 编译ts
