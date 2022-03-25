@@ -188,4 +188,5 @@ create databse blog; 表示创建blog数据库
 npx typeorm init --database postgres 初始化typeorm
 git checkout HEAD -- .gitignore
 git checkout HEAD -- package.json
+git checkout HEAD -- tsconfig.json
 ````
