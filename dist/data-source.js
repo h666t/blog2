@@ -9,8 +9,6 @@ require("reflect-metadata");
 
 var _typeorm = require("typeorm");
 
-var _User = require("./entity/User");
-
 var AppDataSource = new _typeorm.DataSource({
   type: "postgres",
   host: "localhost",
@@ -20,7 +18,7 @@ var AppDataSource = new _typeorm.DataSource({
   database: "blog_development",
   synchronize: true,
   logging: false,
-  entities: [_User.User],
+  entities: [],
   migrations: [],
   subscribers: []
 });
