@@ -1,8 +1,9 @@
-import {MigrationInterface, QueryRunner, Table} from 'typeorm';
+import {MigrationInterface, QueryRunner, Table, TableColumn} from 'typeorm';
 
 export class CreateBlog1648204631095 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
+
     await queryRunner.createTable(new Table({
       name: 'blogs',
       columns: [
@@ -14,12 +15,16 @@ export class CreateBlog1648204631095 implements MigrationInterface {
         },
         {
           name: 'title',
-          type: 'varchar'
+          type: 'varchar',
+          isNullable: true,
+          default: null,
         },
         {
           name: 'content',
-          type: 'text'
-        }
+          type: 'text',
+          isNullable: true,
+          default: null
+        },
       ],
     }));
   }

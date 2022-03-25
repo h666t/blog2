@@ -1,21 +1,16 @@
 import { AppDataSource } from "./data-source"
+import {Blogs} from "./entity/blogs"
+AppDataSource.initialize().then(async ({manager}) => {
 
-AppDataSource.initialize().then(async (res) => {
+    let blog = new Blogs()
 
-    // console.log(res);
-    console.log("Inserting a new user into the database...")
-    // const user = new User()
-    // user.firstName = "Timber"
-    // user.lastName = "Saw"
-    // user.age = 25
-    // await AppDataSource.manager.save(user)
-    // console.log("Saved a new user with id: " + user.id)
-    //
-    // console.log("Loading users from the database...")
-    // const users = await AppDataSource.manager.find(User)
-    // console.log("Loaded users: ", users)
+    blog.title = 'title'
+    blog.content = "content"
+    await manager.save(Blogs, blog)
+    let blogsList = await manager.find(Blogs)
+    console.log(blogsList);
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
+    await AppDataSource.destroy()
 
 }).catch(error => console.log(error))
 

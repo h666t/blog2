@@ -8,27 +8,33 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _dataSource = require("./data-source");
 
+var _blogs = require("./entity/blogs");
+
 _dataSource.AppDataSource.initialize().then( /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(res) {
+  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(_ref) {
+    var manager, blog, blogsList;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            // console.log(res);
-            console.log("Inserting a new user into the database..."); // const user = new User()
-            // user.firstName = "Timber"
-            // user.lastName = "Saw"
-            // user.age = 25
-            // await AppDataSource.manager.save(user)
-            // console.log("Saved a new user with id: " + user.id)
-            //
-            // console.log("Loading users from the database...")
-            // const users = await AppDataSource.manager.find(User)
-            // console.log("Loaded users: ", users)
+            manager = _ref.manager;
+            blog = new _blogs.Blogs();
+            blog.title = 'title';
+            blog.content = "content";
+            _context.next = 6;
+            return manager.save(_blogs.Blogs, blog);
 
-            console.log("Here you can setup and run express / fastify / any other framework.");
+          case 6:
+            _context.next = 8;
+            return manager.find(_blogs.Blogs);
 
-          case 2:
+          case 8:
+            blogsList = _context.sent;
+            console.log(blogsList);
+            _context.next = 12;
+            return _dataSource.AppDataSource.destroy();
+
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -37,7 +43,7 @@ _dataSource.AppDataSource.initialize().then( /*#__PURE__*/function () {
   }));
 
   return function (_x) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }())["catch"](function (error) {
   return console.log(error);

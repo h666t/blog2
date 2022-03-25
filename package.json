@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "orm:build": "npx babel ./src --out-dir dist --extensions \".ts,.tsx\"",
-    "mig:run": "npx typeorm migration:run -d dist/data-source.js"
+    "mig:run": "npx typeorm migration:run -d dist/data-source.js",
+    "entity:create": "npx typeorm entity:create src/entity/blogs"
   },
   "dependencies": {
     "axios": "^0.26.1",
