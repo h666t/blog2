@@ -168,3 +168,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 ````
 
+# postgres
+````bash
+docker pull postgres
+docker run --name mypostgres -d -p 5432:5432 -e POSTGRES_PASSWORD=123456 postgres
+docker exec -it 容器id bash
+psql -U postgres
+\l 表示list
+\c 数据库名字 表示链接某一个数据库
+\dt 表示展示所有表（display table）
+create databse blog; 表示创建blog数据库
+````
