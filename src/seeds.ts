@@ -1,15 +1,15 @@
 import {AppDataSource} from './data-source';
-import {BlogUser} from './entity/BlogUser';
+import {BlogSystemUser} from './entity/BlogSystemUser';
 import {Blog} from './entity/Blog';
 import {Comment} from './entity/Comment';
 
 AppDataSource.initialize().then(async (dataSource) => {
   const {manager} = dataSource;
 
-  const user = new BlogUser();
+  const user = new BlogSystemUser();
   user.username = 'author' + Date.now().toString();
   user.password_digest = 'test';
-  await manager.save(BlogUser, user);
+  await manager.save(BlogSystemUser, user);
 
   const blog = new Blog();
   blog.title = 'title' + Date.now().toString();
@@ -17,10 +17,10 @@ AppDataSource.initialize().then(async (dataSource) => {
   blog.author = user;
   await manager.save(Blog, blog);
 
-  const commentUser = new BlogUser();
+  const commentUser = new BlogSystemUser();
   commentUser.username = 'commenter' + Date.now().toString();
   commentUser.password_digest = 'test';
-  await manager.save(BlogUser, commentUser);
+  await manager.save(BlogSystemUser, commentUser);
 
   const comment = new Comment();
   comment.user = commentUser;

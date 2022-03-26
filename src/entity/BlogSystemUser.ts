@@ -10,7 +10,7 @@ import {
 import {Blog} from './Blog';
 import {Comment} from './Comment';
 @Entity()
-export class BlogUser {
+export class BlogSystemUser {
   @PrimaryGeneratedColumn()
   id: number | undefined;
 

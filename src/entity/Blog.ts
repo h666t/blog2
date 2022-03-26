@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
-import {BlogUser} from './BlogUser';
+import {BlogSystemUser} from './BlogSystemUser';
 import {Comment} from './Comment'
 
 @Entity()
@@ -21,9 +21,9 @@ export class Blog {
   @Column()
   content: string | undefined | null;
 
-  @ManyToOne(() => BlogUser, (user) => user.blogs)
+  @ManyToOne(() => BlogSystemUser, (user) => user.blogs)
   @JoinColumn({name: 'author_id'})
-  author: BlogUser | undefined
+  author: BlogSystemUser | undefined
 
   @OneToMany(type => Comment, comment => comment.blog)
   comments: Comment[] | undefined;

@@ -4,7 +4,7 @@ export class CreateUser1648297892959 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'blog_user',
+            name: 'blog_system_user',
             columns: [
                 {name: 'id', isPrimary: true, type: 'int', isGenerated: true},
                 {name: 'username', type: 'varchar'},
