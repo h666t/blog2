@@ -1,40 +1,52 @@
-import {MigrationInterface, QueryRunner, Table, TableColumn} from 'typeorm';
+import {MigrationInterface, QueryRunner, Table} from 'typeorm';
 
-export class CreateBlog1648204631095 implements MigrationInterface {
+export class CreateBlog1648297883395 implements MigrationInterface {
 
-  public async up(queryRunner: QueryRunner): Promise<void> {
 
-    await queryRunner.createTable(new Table({
-      name: 'blogs',
-      columns: [
-        {
-          name: 'id',
-          type: 'int',
-          isPrimary: true,
-          isGenerated: true
-        },
-        {
-          name: 'title',
-          type: 'varchar',
-          isNullable: true,
-          default: null,
-        },
-        {
-          name: 'content',
-          type: 'text',
-          isNullable: true,
-          default: null
-        },
-        {
-          name: 'author_id',
-          type: 'int',
-        },
-      ],
-    }));
-  }
+    public async up(queryRunner: QueryRunner): Promise<void> {
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('blogs');
-  }
+        await queryRunner.createTable(new Table({
+            name: 'blog',
+            columns: [
+                {
+                    name: 'id',
+                    type: 'int',
+                    isPrimary: true,
+                    isGenerated: true
+                },
+                {
+                    name: 'title',
+                    type: 'varchar',
+                    isNullable: true,
+                    default: null,
+                },
+                {
+                    name: 'content',
+                    type: 'text',
+                    isNullable: true,
+                    default: null
+                },
+                {
+                    name: 'author_id',
+                    type: 'int',
+                },
+                {
+                    name: 'create_at',
+                    type: 'timestamp',
+                    default: 'now()'
+                },
+                {
+                    name: 'update_at',
+                    type: 'timestamp',
+                    default: 'now()'
+                },
+            ],
+        }));
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('blogs');
+    }
+
 
 }

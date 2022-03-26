@@ -1,5 +1,5 @@
 import { AppDataSource } from "./data-source"
-import {Blogs} from "./entity/blogs"
+import {Blogs} from "./entity/Blogs"
 AppDataSource.initialize().then(async ({manager}) => {
 
     let blog = new Blogs()

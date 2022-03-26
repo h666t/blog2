@@ -1,27 +1,33 @@
 import {AppDataSource} from './data-source';
-import {Blogs} from './entity/blogs';
+import {BlogUser} from './entity/BlogUser';
+import {Blog} from './entity/Blog';
+import {Comment} from './entity/Comment';
 
-AppDataSource.initialize().then(async ({manager}) => {
+AppDataSource.initialize().then(async (dataSource) => {
+  const {manager} = dataSource;
 
-  let currentBlogList = await manager.find(Blogs);
+  const user = new BlogUser();
+  user.username = 'author' + Date.now().toString();
+  user.password_digest = 'test';
+  await manager.save(BlogUser, user);
 
-  if (currentBlogList.length > 0) {
-    console.log('有数据');
-  } else {
-    await manager.save([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
-      return new Blogs({
-        title: `第${item}篇文章`,
-        content: `我是第${item}篇文章`,
-        delete_date: null
-      });
-    }));
+  const blog = new Blog();
+  blog.title = 'title' + Date.now().toString();
+  blog.content = 'content' + Date.now().toString();
+  blog.author = user;
+  await manager.save(Blog, blog);
 
-    let blogsList = await manager.find(Blogs);
-    console.log('填充完毕');
-    console.log(blogsList);
-  }
+  const commentUser = new BlogUser();
+  commentUser.username = 'commenter' + Date.now().toString();
+  commentUser.password_digest = 'test';
+  await manager.save(BlogUser, commentUser);
 
-  await AppDataSource.destroy();
+  const comment = new Comment();
+  comment.user = commentUser;
+  comment.content = 'comment';
+  comment.blog = blog;
+  await manager.save(Comment, comment);
 
+  await dataSource.destroy();
 }).catch(error => console.log(error));
 
