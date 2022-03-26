@@ -25,6 +25,10 @@ export class CreateBlog1648204631095 implements MigrationInterface {
           isNullable: true,
           default: null
         },
+        {
+          name: 'author_id',
+          type: 'int',
+        },
       ],
     }));
   }
