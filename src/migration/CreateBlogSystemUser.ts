@@ -9,8 +9,8 @@ export class CreateUser1648297892959 implements MigrationInterface {
                 {name: 'id', isPrimary: true, type: 'int', isGenerated: true},
                 {name: 'username', type: 'varchar'},
                 {name: 'password_digest', type: 'varchar'},
-                {name: 'create_at',type: 'timestamp',default: 'now()'},
-                {name: 'update_at',type: 'timestamp',default: 'now()'},
+                {name: 'create_at',type: 'timestamptz',default: 'now()'},
+                {name: 'update_at',type: 'timestamptz',default: 'now()'},
             ]
         }));
     }

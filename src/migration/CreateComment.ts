@@ -9,8 +9,8 @@ export class CreateComment1648297897860 implements MigrationInterface {
                 {name: 'user_id', type: 'int'},
                 {name: 'blog_id', type: 'int'},
                 {name: 'content', type: 'text'},
-                {name: 'create_at',type: 'timestamp',default: 'now()'},
-                {name: 'update_at',type: 'timestamp',default: 'now()'},
+                {name: 'create_at',type: 'timestamptz',default: 'now()'},
+                {name: 'update_at',type: 'timestamptz',default: 'now()'},
             ]
         }));
     }

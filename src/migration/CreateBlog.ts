@@ -32,12 +32,12 @@ export class CreateBlog1648297883395 implements MigrationInterface {
                 },
                 {
                     name: 'create_at',
-                    type: 'timestamp',
+                    type: 'timestamptz',
                     default: 'now()'
                 },
                 {
                     name: 'update_at',
-                    type: 'timestamp',
+                    type: 'timestamptz',
                     default: 'now()'
                 },
             ],
