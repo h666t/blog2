@@ -15,10 +15,14 @@ export class Comment {
   @PrimaryGeneratedColumn()
   id: number | undefined;
 
+  @Column()
+  user_id: number | undefined | null;
   @ManyToOne(() => BlogSystemUser, (user) => user.comments)
   @JoinColumn({name: 'user_id'})
   user: BlogSystemUser | undefined;
 
+  @Column()
+  blog_id: number | undefined | null;
   @ManyToOne(() => Blog, (blog) => blog.comments)
   @JoinColumn({name: 'blog_id'})
   blog: Blog | undefined;

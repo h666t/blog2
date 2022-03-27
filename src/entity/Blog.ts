@@ -21,6 +21,8 @@ export class Blog {
   @Column()
   content: string | undefined | null;
 
+  @Column()
+  author_id: number | undefined | null;
   @ManyToOne(() => BlogSystemUser, (user) => user.blogs)
   @JoinColumn({name: 'author_id'})
   author: BlogSystemUser | undefined
