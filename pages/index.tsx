@@ -13,7 +13,7 @@ type Props = {
 export const getServerSideProps: GetServerSideProps = async () => {
   await initializeAppDataSource();
   const {manager} = AppDataSource;
-  let blogs = await manager.find('blog')
+  let blogs = await manager.find('blog');
   console.log(blogs);
   return {
     props: {
@@ -25,12 +25,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export default function Home(props: Props) {
   return (
     <>
-      {props.blogs.map((blog)=>{
+      {props.blogs.map((blog) => {
         return <div key={blog.id}>
           <div>id: {blog.id}</div>
           <div>title: {blog.title}</div>
           <br/>
-        </div>
+        </div>;
       })}
     </>
   );
