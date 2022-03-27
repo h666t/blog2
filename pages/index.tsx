@@ -2,6 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from "next/link"
+import {GetServerSideProps} from 'next';
+import {AppDataSource} from '../src/data-source';
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  let {manager} = await AppDataSource
+  console.log(manager);
+  return {
+    props: {}
+  }
+}
 
 export default function Home() {
   return (

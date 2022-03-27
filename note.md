@@ -14,7 +14,7 @@ nextjs == react + node
  </Head>
 ````
 
-# _app.js
+# _app.tsx
 react的根节点，可全局配置Head等
 
 # 局部css

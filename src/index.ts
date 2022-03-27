@@ -1,16 +1,16 @@
 import { AppDataSource } from "./data-source"
-import {Blogs} from "./entity/Blogs"
+import {Blog} from "./entity/Blog"
 AppDataSource.initialize().then(async ({manager}) => {
 
-    let blog = new Blogs()
+    let blog = new Blog()
 
     blog.title = 'title'
     blog.content = "content"
-    await manager.save(Blogs, blog)
-    let blogsList = await manager.find(Blogs)
+    await manager.save(Blog, blog)
+    let blogsList = await manager.find(Blog)
     console.log(blogsList);
 
-    await AppDataSource.destroy()
+    // await AppDataSource.destroy()
 
 }).catch(error => console.log(error))
 
