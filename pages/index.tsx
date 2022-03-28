@@ -27,8 +27,12 @@ export default function Home(props: Props) {
     <>
       {props.blogs.map((blog) => {
         return <div key={blog.id}>
-          <div>id: {blog.id}</div>
-          <div>title: {blog.title}</div>
+          <Link href={`/blogs/${blog.id}`}>
+            <a>
+              <div>id: {blog.id}</div>
+              <div>title: {blog.title}</div>
+            </a>
+          </Link>
           <br/>
         </div>;
       })}

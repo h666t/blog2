@@ -1,39 +1,36 @@
-import {GetStaticPaths, GetStaticProps, NextPage} from 'next';
-import {getBlogDetail, getBlogIDList} from '../../lib/blogs';
+import {GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, NextPage} from 'next';
+import {initializeAppDataSource} from '../../lib/initializeAppDataSource';
+import {AppDataSource} from '../../src/data-source';
+import {PreviewData} from 'next/types';
 
 type Props = {
   blogDetail: Blog
 }
 
+export const getServerSideProps: GetServerSideProps<{ [key: string]: any },{id: string}, PreviewData> = async (context) => {
+  let id = context.params ? context.params.id : '';
+  await initializeAppDataSource();
+  let {manager} = AppDataSource;
+  let blogDetail = await manager.findOneBy('blog', {id: id});
+  return {
+    props: {
+      blogDetail: JSON.parse(JSON.stringify(blogDetail))
+    }
+  };
+};
+
 const BlogDetail: NextPage<Props> = (props) => {
+  console.log(props);
   return <>
     <h1>{props.blogDetail.title}</h1>
     <br/>
     这里会被注入
-    <article dangerouslySetInnerHTML={{__html: props.blogDetail.htmlContent}}>
+    <br/>
+    内容：
+    <article dangerouslySetInnerHTML={{__html: props.blogDetail.content}}>
     </article>
   </>;
 };
 
 export default BlogDetail;
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-  let blogIDList = await getBlogIDList();
-  return {
-    paths: blogIDList.map((item)=>{
-      return {
-        params: {id: item}
-      }
-    }),
-    fallback: false
-  };
-};
-export const getStaticProps: GetStaticProps = async (context) => {
-  let blogDetail = await getBlogDetail(context.params ? context.params.id : '')
-  return {
-    props: {
-      id: context && context.params ? context.params.id : "",
-      blogDetail
-    }
-  };
-};
