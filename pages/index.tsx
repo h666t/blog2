@@ -25,6 +25,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export default function Home(props: Props) {
   return (
     <>
+      <Link href={'/sign_up'}><a>注册</a></Link>
       {props.blogs.map((blog) => {
         return <div key={blog.id}>
           <Link href={`/blogs/${blog.id}`}>
