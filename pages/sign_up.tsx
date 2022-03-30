@@ -15,6 +15,7 @@ const SignUp: NextPage = () => {
     password: '',
     passwordForConfirm: ''
   })
+  let [signUpResult, setSignUpResult] = useState("")
   const changeFormData = (info: Partial<FormData>) => {
     setFormData( (value) => {
       return {
@@ -26,9 +27,9 @@ const SignUp: NextPage = () => {
   const submitForm = (e: { preventDefault: () => void; }) => {
     e.preventDefault()
     axios.post('/api/v1/user', formData).then((res)=>{
-      console.log(res);
+      setSignUpResult(res.data)
     }, (err)=>{
-      console.log(err.message);
+      setSignUpResult(err.response.data);
     })
   }
   return <>
@@ -44,6 +45,8 @@ const SignUp: NextPage = () => {
           <input onChange={event => changeFormData({passwordForConfirm: event.target.value})} type="password"/>
         </div>
         <button type={'submit'}>提交</button>
+        <hr/>
+        <div>{signUpResult}</div>
       </form>
     </div>
   </>

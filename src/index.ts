@@ -1,20 +1,13 @@
 import { AppDataSource } from "./data-source"
 import {Blog} from "./entity/Blog"
+import {BlogSystemUser} from './entity/BlogSystemUser';
 // import {initializeAppDataSource} from '../lib/initializeAppDataSource';
-// AppDataSource.initialize().then(async ({manager}) => {
+AppDataSource.initialize().then(async ({manager}) => {
 
-    // let blog = new Blog()
-    //
-    // blog.title = 'title'
-    // blog.content = "content"
-    // await manager.save(Blog, blog)
-    // console.log(123);
-    // let blogsList = await manager.find(Blog)
-    // console.log(blogsList);
+  console.log(BlogSystemUser);
+  console.log('init');
 
-    // await AppDataSource.destroy()
-
-// }).catch(error => console.log(error))
+}).catch(error => console.log(error))
 
 
 

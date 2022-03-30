@@ -12,9 +12,11 @@
     "entity:create": "npx typeorm entity:create src/entity/blogs"
   },
   "dependencies": {
+    "@types/md5": "^2.3.2",
     "axios": "^0.26.1",
     "gray-matter": "^4.0.3",
     "marked": "^4.0.12",
+    "md5": "^2.3.0",
     "next": "12.1.0",
     "pg": "^8.7.3",
     "react": "17.0.2",
@@ -27,7 +29,6 @@
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-proposal-decorators": "^7.17.8",
-    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "@types/axios": "^0.14.0",
     "@types/marked": "^4.0.3",
     "@types/next": "^9.0.0",
@@ -38,6 +39,7 @@
     "@types/reflect-metadata": "^0.1.0",
     "@types/ua-parser-js": "^0.7.36",
     "@typescript-eslint/parser": "^5.16.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "concurrently": "^7.0.0",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
