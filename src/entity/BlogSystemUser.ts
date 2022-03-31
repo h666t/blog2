@@ -5,16 +5,20 @@ import {
   JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn
 } from 'typeorm';
 import {Blog} from './Blog';
 import {Comment} from './Comment';
 @Entity()
+@Unique(['username'])
 export class BlogSystemUser {
   @PrimaryGeneratedColumn()
   id: number | undefined;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   username: string | undefined;
 
   @Column()
