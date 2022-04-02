@@ -4,14 +4,14 @@ import axios from 'axios';
 import {data} from 'browserslist';
 
 type FormData = {
-  name: string;
+  username: string;
   password: string;
   passwordForConfirm: string;
 }
 
 const SignUp: NextPage = () => {
   let [formData, setFormData] = useState<FormData>({
-    name: '',
+    username: '',
     password: '',
     passwordForConfirm: ''
   })
@@ -38,7 +38,7 @@ const SignUp: NextPage = () => {
       <form onSubmit={submitForm}>
         <div>
           <div>用户名</div>
-          <input onChange={event => changeFormData({name: event.target.value})} type="text"/>
+          <input onChange={event => changeFormData({username: event.target.value})} type="text"/>
           <div>密码</div>
           <input onChange={event => changeFormData({password: event.target.value})} type="password"/>
           <div>确认密码</div>

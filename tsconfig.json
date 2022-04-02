@@ -75,7 +75,9 @@
    "include": [
       "next-env.d.ts",
       "**/*.ts",
-      "**/*.tsx"
+      "**/*.tsx",
+      "src/**/*.ts",
+      "pages/**/*.ts"
    ],
    "exclude": [
       "node_modules"
