@@ -23,11 +23,13 @@ export class Blog {
 
   @Column()
   author_id: number | undefined | null;
-  @ManyToOne(() => BlogSystemUser, (user) => user.blogs)
+  // @ManyToOne(() => BlogSystemUser, (user) => user.blogs)
+  @ManyToOne('BlogSystemUser', 'blogs')
   @JoinColumn({name: 'author_id'})
   author: BlogSystemUser | undefined
 
-  @OneToMany(type => Comment, comment => comment.blog)
+  // @OneToMany(type => Comment, comment => comment.blog)
+  @OneToMany('Comment', 'blog')
   comments: Comment[] | undefined;
 
   @CreateDateColumn()

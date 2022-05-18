@@ -18,13 +18,15 @@ export class Comment {
   @Column()
   user_id: number | undefined | null;
 
-  @ManyToOne(() => BlogSystemUser, (user) => user.comments)
+  // @ManyToOne(() => BlogSystemUser, (user) => user.comments)
+  @ManyToOne('BlogSystemUser', 'comments')
   @JoinColumn({name: 'user_id'})
   user: BlogSystemUser | undefined;
 
   @Column()
   blog_id: number | undefined | null;
-  @ManyToOne(() => Blog, (blog) => blog.comments)
+  // @ManyToOne(() => Blog, (blog) => blog.comments)
+  @ManyToOne('Blog', 'comments')
   @JoinColumn({name: 'blog_id'})
   blog: Blog | undefined;
 

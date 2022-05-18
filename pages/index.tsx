@@ -4,28 +4,20 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import {GetServerSideProps} from 'next';
 import {AppDataSource} from '../src/data-source';
-import {initializeAppDataSource} from '../lib/initializeAppDataSource';
-
+import style from "./Home.module.css"
+import axios from 'axios';
+import {Blog} from '../src/entity/Blog';
 type Props = {
   blogs: Blog[]
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  await initializeAppDataSource();
-  const {manager} = AppDataSource;
-  let blogs = await manager.find('Blog');
-  console.log(blogs);
-  return {
-    props: {
-      blogs: JSON.parse(JSON.stringify(blogs))
-    }
-  };
-};
+
 
 export default function Home(props: Props) {
   return (
-    <>
+    <div className={style.container}>
       <Link href={'/sign_up'}><a>注册</a></Link>
+      <Link href={'/sign_in'}><a>登录</a></Link>
       {props.blogs.map((blog) => {
         return <div key={blog.id}>
           <Link href={`/blogs/${blog.id}`}>
@@ -37,6 +29,18 @@ export default function Home(props: Props) {
           <br/>
         </div>;
       })}
-    </>
+    </div>
   );
 }
+export const getServerSideProps: GetServerSideProps = async () => {
+  if(!AppDataSource.isInitialized){
+    await AppDataSource.initialize()
+  }
+  let {manager} = AppDataSource
+  let blogs = await manager.find(Blog)
+  return {
+    props: {
+      blogs: JSON.parse(JSON.stringify(blogs))
+    }
+  };
+};

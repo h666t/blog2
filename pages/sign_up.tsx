@@ -1,5 +1,5 @@
 import {NextPage} from 'next';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import {data} from 'browserslist';
 
@@ -24,7 +24,7 @@ const SignUp: NextPage = () => {
       }
     })
   }
-  const submitForm = (e: { preventDefault: () => void; }) => {
+  const submitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     axios.post('/api/v1/user', formData).then((res)=>{
       setSignUpResult(res.data)
