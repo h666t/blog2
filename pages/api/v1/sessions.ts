@@ -1,25 +1,30 @@
 import {NextApiHandler, NextApiRequest, NextApiResponse} from 'next';
 import {AppDataSource} from '../../../src/data-source';
-import {BlogSystemUser} from '../../../src/entity/BlogSystemUser';
 import {initializeAppDataSource} from '../../../src/lib/initializeAppDataSource';
+import {withIronSessionApiRoute} from 'iron-session/next';
+import {BlogSystemUser} from '../../../src/entity/BlogSystemUser';
+import md5 from 'md5';
+import {withSessionRoute} from '../../lib/withSession';
 
-const Sessions: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const Sessions: NextApiHandler = withSessionRoute(async (req, res) => {
   let {username, password} = req.body;
   res.setHeader('content-type', 'application/json; charset=utf-8');
-  // await AppDataSource.initialize();
-  console.log(AppDataSource.isInitialized);
-  await initializeAppDataSource()
-  // await initializeAppDataSource()
-  console.log(AppDataSource.isInitialized);
+  await initializeAppDataSource();
   let {manager} = AppDataSource;
-  let existUser = await manager.findBy('BlogSystemUser', {
+  let existUser = await manager.findBy(BlogSystemUser, {
     username
   });
-  res.status(200);
-  // if(existUser){
-  //   if(existUser.password_digest){}
-  // }
-  res.end();
-};
+  if(existUser && existUser[0] && existUser[0].password_digest === md5(password.trim())){
+    req.session.user = existUser[0]
+    await req.session.save()
+    // await req.session.save();
+    res.status(200)
+    // console.log(JSON.stringify(existUser[0]));
+    res.end(JSON.stringify(existUser[0]));
+  } else {
+    res.status(400);
+    res.end()
+  }
+});
 
 export default Sessions;

@@ -1,23 +1,30 @@
 import {GetServerSideProps, NextPage} from 'next';
 import React, {useState} from 'react';
 import axios from 'axios';
+import {withSessionSsr} from './lib/withSession';
+import { useRouter } from 'next/router'
+type Props = {
+  isSignIn : boolean
+}
 
-export const getServerSideProps: GetServerSideProps = async (props) => {
+export const getServerSideProps: GetServerSideProps = withSessionSsr(async ({req}) => {
+  const user = req.session.user;
+
   return {
-    props: {}
-  };
-};
+    props : {
+      isSignIn: !!user
+    }
+  }
+});
 
 type FormData = {
   username?: string,
   password?: string
 }
 
-const SignIn: NextPage = () => {
-  let form: Required<FormData> = {
-    username: '',
-    password: ''
-  };
+const SignIn: NextPage<Props> = (props) => {
+  const router = useRouter()
+  let form: Required<FormData>
   let [errorString, setErrorString] = useState('');
   const changeFormData = (formData: FormData) => {
     form = {
@@ -32,10 +39,11 @@ const SignIn: NextPage = () => {
     //   return;
     // }
     axios.post("/api/v1/sessions", form).then((res)=>{
-
+      router.push("/").then()
     })
   };
   return <>
+    <div>{props.isSignIn ? '已登录' : '请登录'}</div>
     <form onSubmit={submitForm}>
       <div>
         <div>用户名</div>

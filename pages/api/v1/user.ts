@@ -1,8 +1,7 @@
 import {NextApiHandler, NextApiRequest, NextApiResponse} from 'next';
-import {AppDataSource} from '../../../dist/data-source';
-import {BlogSystemUser} from '../../../dist/entity/BlogSystemUser';
-import md5 from 'md5';
-import {initializeAppDataSource} from '../../../src/lib/initializeAppDataSource';
+import {AppDataSource} from '../../../src/data-source';
+import {BlogSystemUser} from '../../../src/entity/BlogSystemUser';
+import {initializeAppDataSource} from '../../../lib/initializeAppDataSource';
 
 const User: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   let {username, password, passwordForConfirm} = req.body;
@@ -11,6 +10,7 @@ const User: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) =
   // await initializeAppDataSource()
   // console.log(AppDataSource.isInitialized);
   // await AppDataSource.initialize();
+  await initializeAppDataSource()
   let {manager} = AppDataSource;
   let user = new BlogSystemUser();
   user.username = username;

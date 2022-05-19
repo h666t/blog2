@@ -8,8 +8,6 @@ import {
   Unique,
   UpdateDateColumn
 } from 'typeorm';
-import {Blog} from './Blog';
-import {Comment} from './Comment';
 import 'reflect-metadata';
 
 import {AppDataSource} from '../data-source';
@@ -35,11 +33,9 @@ export class BlogSystemUser {
   @UpdateDateColumn()
   update_at: Date | undefined;
 
-  // @OneToMany(() => Blog, (blog) => blog.author)
   @OneToMany('Blog', 'author')
   blogs: Blog[] | undefined;
 
-  // @OneToMany(() => Comment, (comment) => comment.user)
   @OneToMany('Comment', 'user')
   comments: Comment[] | undefined;
 
