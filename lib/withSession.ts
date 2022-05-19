@@ -4,11 +4,11 @@ import {
   GetServerSidePropsResult,
   NextApiHandler,
 } from "next";
-import {BlogSystemUser} from '../../src/entity/BlogSystemUser';
+import {BlogSystemUser} from '../src/entity/BlogSystemUser';
 
 const sessionOptions = {
   cookieName: "my_blog",
-  password: process.env.SECRET,
+  password: process.env.SECRET as string,
   cookieOptions: {
     secure: false,
   },

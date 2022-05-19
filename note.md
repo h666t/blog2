@@ -230,3 +230,10 @@ git checkout HEAD -- tsconfig.json
 # 创建表
 通过 migrations ，它可以帮助你进行修改数据库字段等操作，而不用担心数据丢失
 通过 https://typeorm.io/migrations 创建表
+
+# 部署
+```bash
+yarn build
+yarn start
+
+```

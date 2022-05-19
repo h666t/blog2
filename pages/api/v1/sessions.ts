@@ -4,7 +4,7 @@ import {initializeAppDataSource} from '../../../src/lib/initializeAppDataSource'
 import {withIronSessionApiRoute} from 'iron-session/next';
 import {BlogSystemUser} from '../../../src/entity/BlogSystemUser';
 import md5 from 'md5';
-import {withSessionRoute} from '../../lib/withSession';
+import {withSessionRoute} from '../../../lib/withSession';
 
 const Sessions: NextApiHandler = withSessionRoute(async (req, res) => {
   let {username, password} = req.body;

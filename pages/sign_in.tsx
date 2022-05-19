@@ -1,7 +1,7 @@
 import {GetServerSideProps, NextPage} from 'next';
 import React, {useState} from 'react';
 import axios from 'axios';
-import {withSessionSsr} from './lib/withSession';
+import {withSessionSsr} from '../lib/withSession';
 import { useRouter } from 'next/router'
 type Props = {
   isSignIn : boolean

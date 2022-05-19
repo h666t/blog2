@@ -7,12 +7,12 @@ import {AppDataSource} from '../src/data-source';
 import style from "./Home.module.css"
 import axios from 'axios';
 import {Blog} from '../src/entity/Blog';
-import {withSessionSsr} from './lib/withSession';
+import {withSessionSsr} from '../lib/withSession';
 import {BlogSystemUser} from '../src/entity/BlogSystemUser';
 type Props = {
   blogs: Blog[],
   isSignIn: boolean,
-  user: BlogSystemUser | undefined,
+  user: BlogSystemUser | null,
 }
 
 export default function Home(props: Props) {
@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = withSessionSsr(async ({req
   return {
     props : {
       isSignIn: !!user,
-      user: user || undefined,
+      user: user || null,
       blogs: JSON.parse(JSON.stringify(blogs))
     }
   }
