@@ -8,7 +8,7 @@ import {BlogSystemUser} from '../../src/entity/BlogSystemUser';
 
 const sessionOptions = {
   cookieName: "my_blog",
-  password: "0f2d510f-1470-463f-bdfc-7db591ff1b32",
+  password: process.env.SECRET,
   cookieOptions: {
     secure: false,
   },
