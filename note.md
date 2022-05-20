@@ -286,8 +286,6 @@ yarn start
 
 可能会遇到无法访问数据库的问题
 将容器删掉，重新跑，添加 --network=host 
-可能还是有问题，因为没有.env.local文件
-```bash
-vi ~/.bashrc
-# 写 export NODE_ENV=production
-```
+可能还是有问题，因为没有.env.local文件，touch一个
+
+阿里云 配置安全组，允许访问3000端口
