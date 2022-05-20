@@ -276,3 +276,7 @@ yarn start
 用root安装docker 百度一下
 将要用到的非root用户添加到docker分组
 在用户目录拉取代码到app目录
+
+创建一个和app同级的目录，用于存放数据库数据
+安装postgres
+在app中的代码里创建docker镜像
