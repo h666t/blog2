@@ -270,4 +270,9 @@ yarn start
 
 #有问题的话 看docker日志
 # docker logs <dockerid>
+#由于跑在两个容器里，所以可能连不上数据库
 ```
+链接服务器 ssh
+用root安装docker 百度一下
+将要用到的非root用户添加到docker分组
+在用户目录拉取代码到app目录
