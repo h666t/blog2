@@ -279,4 +279,15 @@ yarn start
 
 创建一个和app同级的目录，用于存放数据库数据
 安装postgres
-在app中的代码里创建docker镜像
+安装node，
+在app中的代码里创建docker镜像,跑起来，
+
+此时可以curl http://localhost:3000
+
+可能会遇到无法访问数据库的问题
+将容器删掉，重新跑，添加 --network=host 
+可能还是有问题，因为没有.env.local文件
+```bash
+vi ~/.bashrc
+# 写 export NODE_ENV=production
+```
