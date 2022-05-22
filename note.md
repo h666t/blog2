@@ -289,3 +289,7 @@ yarn start
 可能还是有问题，因为没有.env.local文件，touch一个
 
 阿里云 配置安全组，允许访问3000端口
+
+# nginx
+1. 静态文件走nginx，快
+2. 可以起多个node，无缝重启
